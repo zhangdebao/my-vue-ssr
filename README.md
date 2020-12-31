@@ -8,3 +8,5 @@
 #### 初始化项目
 - npm i vue vue-server-renderer
 - touch server.js
+### 启动
+- nodemon server.js
