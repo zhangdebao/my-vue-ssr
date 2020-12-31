@@ -57,7 +57,7 @@ module.exports = (server, callback) => {
   const clientConfig = require('./webpack.client.config')
   clientConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
   clientConfig.entry.app = [
-    'webpack-hot-middleware/client', // 和服务器交互处理热更新一个客户端脚本
+    'webpack-hot-middleware/client?quiet=true&reload=true', // 和服务器交互处理热更新一个客户端脚本
     clientConfig.entry.app
   ]
   clientConfig.output.filename = '[name].js' // 热更新模式下确保一致的hash
