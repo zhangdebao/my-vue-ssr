@@ -4,6 +4,7 @@ const { createBundleRenderer } = require('vue-server-renderer')
 const fs = require('fs')
 const setupDevServer = require('./build/setup-dev-server')
 const server = express()
+server.use('/dist', express.static('./dist')) // 碰到/dist 前缀的请求， 会在./dist下寻找
 
 let renderer
 let onReady
@@ -26,7 +27,7 @@ if (isProd) {
    * @return {boolean} onReady: 构建状态（打包编译的状态）
   */
   onReady = setupDevServer(server, (serverBundle, template, clientManifest) => { 
-    renderer = createBundleRenderer.createBundleRenderer(serverBundle, {
+    renderer = createBundleRenderer(serverBundle, {
       template,
       clientManifest
     }) // 渲染器
@@ -47,7 +48,6 @@ const render = (req, res) => {
    })
 }
 
-server.use('/dist', express.static('./dist')) // 碰到/dist 前缀的请求， 会在./dist下寻找
 
 server.get('/', isProd ? render :
   async (req, res) => { 
