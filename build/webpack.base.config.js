@@ -57,7 +57,7 @@ module.exports = {
         ]
       },
       // CSS 预处理器，参考:https://vue-loader.vuejs.org/zh/guide/pre- processors.html
-      // 例如处理 Less 资源 // 
+      // 例如处理 scss 资源 // 
       {
         test: /\.scss$/,
         use: [
