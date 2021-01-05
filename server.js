@@ -32,7 +32,6 @@ if (isProd) {
       clientManifest
     }) // 渲染器
   })
-  console.log('onReady', onReady)
 }
 const render = async (req, res) => { 
   // 会找到entry-server.js， 里面创建的vue实例， 然后渲染
