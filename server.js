@@ -34,22 +34,23 @@ if (isProd) {
   })
   console.log('onReady', onReady)
 }
-const render = (req, res) => { 
+const render = async (req, res) => { 
   // 会找到entry-server.js， 里面创建的vue实例， 然后渲染
-  renderer.renderToString({
-    title: '可选传参',
-    meta: '<meta name="description" content="meta传参格式"/>'
-  }, (err, html) => {
+  try {
+    const html = await renderer.renderToString({  // 调用传参给entry-server.js  的context
+      url: req.url,
+      title: '可选传参',
+      meta: '<meta name="description" content="meta传参格式"/>'
+    })
     res.setHeader('Content-Type', 'text/html;charset=utf-8')
-    if (err) { 
-      res.status(500).end('Internal Server Errot')
-    }
     res.end(html)
-   })
+  } catch (err) {
+    res.status(500).end('Internal Server Errot')
+  }
 }
 
-
-server.get('/', isProd ? render :
+// 服务端路由设置为*， 意味着所有的路由都会进入这里
+server.get('*', isProd ? render :
   async (req, res) => { 
     // 等待有了Renderer 渲染器以后，调用render进行渲染
     await onReady
