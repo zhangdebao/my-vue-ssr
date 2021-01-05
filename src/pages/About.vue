@@ -3,7 +3,10 @@
 </template>
 <script>
 export default {
-  name: 'about'
+  name: 'about',
+  metaInfo: {
+    title: '关于'
+  }
 }
 </script>
 <style scoped>

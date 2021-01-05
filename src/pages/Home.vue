@@ -3,7 +3,10 @@
 </template>
 <script>
 export default {
-  name: 'home'
+  name: 'home',
+  metaInfo: {
+    title: '首页'
+  }
 }
 </script>
 <style scoped>

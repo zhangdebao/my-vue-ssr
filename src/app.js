@@ -1,7 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
-import { createRouter } from './router'
+import VueMeta from 'vue-meta'
 
+import { createRouter } from './router'
+Vue.use(VueMeta)
+
+Vue.mixin({
+  metaInfo: {
+    titleTemplate: '%s - 拉钩教育'
+  }
+})
 /**
  * 导出一个工厂函数， 用户创建新的应用程序，router和 store实例
  * @param {void}
